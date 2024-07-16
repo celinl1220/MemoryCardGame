@@ -1,3 +1,7 @@
+const titleWrapper = document.getElementById("title-wrapper");
+const startBtn = document.getElementById("start-btn");
+const gameWrapper = document.getElementById("game-wrapper");
+
 const cards = document.querySelectorAll(".card");
 
 let matchedPairs = 0;
@@ -68,10 +72,15 @@ const shuffleCards = () => {
 	});
 }
 
-shuffleCards();
+const startGame = () => {
+	titleWrapper.style.display = "none";
+	gameWrapper.removeAttribute("style");
+	shuffleCards();
 
-cards.forEach(card => {
-	// card.classList.add("flip");
-	card.addEventListener("click", flipCard);
-	// card.addEventListener("click", shuffleCards);
-});
+	cards.forEach(card => {
+		card.addEventListener("click", flipCard);
+	});
+}
+
+gameWrapper.style.display = "none";
+startBtn.onclick = startGame;

@@ -31,10 +31,44 @@ body {
 	background: var(--background-color);
 }
 
+#title-wrapper {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 20px;
+}
+
+h1 {
+	font-size: 3em;
+	text-align: center;
+	color: var(--headerText-color);
+}
+
+button {
+	background-color: var(--buttonBackground-color);
+	color: var(--border-color);
+	text-align: center;
+	border: 1px solid var(--border-color);
+	border-radius: 10%;
+	padding: 10px;
+	font-size: 1.5em;
+}
+
+button:hover {
+	cursor: pointer;
+	background: linear-gradient(var(--buttonHoverBackground-color), var(--buttonBackground-color));
+}
+
+.button-active, button:active {
+	box-shadow: inset 0 0 10px var(--border-color);
+}
+
 .wrapper {
 	width: 400px;
 	height: 400px;
 	background: var(--mainBackground-color);
+	border: 3px solid var(--border-color);
 	border-radius: 10%;
 	padding: 25px;
 }
