@@ -8,7 +8,32 @@ let matchedPairs = 0;
 let cardOne, cardTwo;
 let disableDeck = false;
 
-const icons = ["star", "heart", "cloud", "diamond", "circle", "square", "crown", "bolt"];
+const iconsArr = [
+	{
+		name: "basic",
+		icons: ["star", "heart", "cloud", "diamond", "circle", "square", "crown", "bolt"]
+	},
+	{
+		name: "weather",
+		icons: ["cloud", "snowflake", "sun", "wind", "tornado", "rainbow", "cloud-rain", "cloud-sun-rain"]
+	},
+	{
+		name: "animals",
+		icons: ["dog", "cat", "fish", "horse", "otter", "frog", "crow", "spider"]
+	},
+	{
+		name: "food",
+		icons: ["lemon", "pizza-slice", "ice-cream", "hotdog", "egg", "drumstick-bite", "burger", "bacon"]
+	},
+	{
+		name: "emojis",
+		icons: ["face-smile", "face-tired", "face-surprise", "face-sad-cry", "face-angry", "face-grin-tongue-wink", "face-grin-hearts", "face-grin-tears"]
+	},
+	{
+		name: "sports",
+		icons: ["bicycle", "dumbbell", "volleyball", "table-tennis-paddle-ball", "person-swimming", "basketball", "futbol", "baseball-bat-ball"]
+	}
+];
 
 const flipCard = (e) => {
 	let clickedCard = e.target;
@@ -63,11 +88,13 @@ const shuffleCards = () => {
 	cardOne = cardTwo = "";
 	let arr = [0,1,2,3,4,5,6,7,0,1,2,3,4,5,6,7];
 	arr.sort(() => Math.random() > 0.5 ? 1 : -1);
+	const randomIconGenre = Math.floor(Math.random() * iconsArr.length);
+	console.log(randomIconGenre);
+	const icons = iconsArr[randomIconGenre].icons;
 	cards.forEach((card, index) => {
 		card.classList.remove("flip");
 		let iTag = card.querySelector(".back-view").querySelector("i");
 		iTag.className = `fa-solid fa-${icons[arr[index]]}`
-		// card.removeEventListener("click", shuffleCards)
 		card.addEventListener("click", flipCard);
 	});
 }
