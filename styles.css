@@ -1,0 +1,114 @@
+:root {
+	--background-color: rgb(191, 209, 229);
+	--mainBackground-color: rgb(166, 189, 219);
+	--cardBackground-color: rgb(128, 166, 206);
+
+	--border-color: rgb(217, 229, 240);
+	--inputBorder-color: rgb(80, 133, 188);
+
+	--buttonBackground-color: rgb(104, 149, 197);
+	--buttonHoverBackground-color: rgb(166, 189, 219);
+	--buttonText-color: rgb(217, 229, 240);
+
+	--headerText-color: rgb(8, 96, 168);
+	--inputText-color: rgb(45, 114, 178);
+	--regularText-color: rgb(80, 133, 188);
+}
+
+* {
+	/*border: 1px solid red; /* for testing purposes */
+	font-family: sans-serif;
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	min-height: 100vh;
+	background: var(--background-color);
+}
+
+.wrapper {
+	width: 400px;
+	height: 400px;
+	background: var(--mainBackground-color);
+	border-radius: 10%;
+	padding: 25px;
+}
+
+.cards, .card, .view {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.cards {
+	width: 100%;
+	height: 100%;
+	flex-wrap: wrap;
+	justify-content: space-between;
+}
+
+.cards .card {
+	cursor: pointer;
+	position: relative;
+	perspective: 800px;
+	transform-style: preserve-3d;
+	width: calc(100% / 4 - 10px);
+	height: calc(100% / 4 - 10px);
+}
+
+.card.shake {
+	animation: shake 0.35s ease-in-out;
+}
+
+@keyframes shake {
+	0%, 100% {
+		transform: translateX(0);
+	}
+	20% {
+		transform: translateX(-13px);
+	}
+	40% {
+		transform: translateX(13px);
+	}
+	60% {
+		transform: translateX(-8px);
+	}
+	80% {
+		transform: translateX(8px);
+	}
+}
+
+.cards .card .view {
+	width: 100%;
+	height: 100%;
+	user-select: none;
+	pointer-events: none;
+	position: absolute;
+	transition: transform 0.25s linear;
+	backface-visibility: hidden;
+	background: var(--cardBackground-color);
+	border-radius: 10%;
+	box-shadow: 5px 5px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card .front-view i, .card .back-view i{
+	font-size: 2em;
+	color: var(--buttonText-color);
+}
+
+.card .back-view {
+	transform: rotateY(-180deg);
+}
+
+.card.flip .front-view {
+	transform: rotateY(180deg);
+}
+
+.card.flip .back-view {
+	transform: rotateY(0);
+}
