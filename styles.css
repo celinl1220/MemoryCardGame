@@ -52,12 +52,39 @@ button {
 	border: 1px solid var(--border-color);
 	border-radius: 10%;
 	padding: 10px;
-	font-size: 1.5em;
 }
 
 button:hover {
 	cursor: pointer;
 	background: linear-gradient(var(--buttonHoverBackground-color), var(--buttonBackground-color));
+}
+
+#start-btn {
+	font-size: 1.5em;
+}
+
+#theme-wrapper {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 20px;
+}
+
+h2 {
+	font-size: 1.5em;
+	color: var(--regularText-color);
+}
+
+.themes {
+	display: flex;
+	justify-content: center;
+	flex-wrap: wrap;
+	gap: 10px;
+}
+
+.themes .theme {
+	width: 150px;
 }
 
 .button-active, button:active {
@@ -126,11 +153,12 @@ button:hover {
 	transition: transform 0.25s linear;
 	backface-visibility: hidden;
 	background: var(--cardBackground-color);
+	border: 1px solid var(--border-color);
 	border-radius: 10%;
 	box-shadow: 5px 5px 8px rgba(0, 0, 0, 0.1);
 }
 
-.card .front-view i, .card .back-view i{
+.card .front-view i, .card .back-view i {
 	font-size: 2em;
 	color: var(--buttonText-color);
 }
