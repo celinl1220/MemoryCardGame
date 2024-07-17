@@ -1,6 +1,7 @@
 const titleWrapper = document.getElementById("title-wrapper");
 const startBtn = document.getElementById("start-btn");
 const gameWrapper = document.getElementById("game-wrapper");
+const themeWrapper = document.getElementById("theme-wrapper");
 
 const cards = document.querySelectorAll(".card");
 
@@ -110,4 +111,5 @@ const startGame = () => {
 }
 
 gameWrapper.style.display = "none";
+themeWrapper.style.display = "none";
 startBtn.onclick = startGame;
