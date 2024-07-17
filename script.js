@@ -1,8 +1,10 @@
 const titleWrapper = document.getElementById("title-wrapper");
 const startBtn = document.getElementById("start-btn");
-const gameWrapper = document.getElementById("game-wrapper");
-const themeWrapper = document.getElementById("theme-wrapper");
 
+const themeWrapper = document.getElementById("theme-wrapper");
+const themes = document.querySelectorAll(".theme");
+
+const gameWrapper = document.getElementById("game-wrapper");
 const cards = document.querySelectorAll(".card");
 
 let matchedPairs = 0;
@@ -60,7 +62,7 @@ const matchCards = (i1, i2) => {
 		matchedPairs++;
 		if(matchedPairs == 8) {
 			setTimeout(() => {
-				shuffleCards();
+				chooseTheme();
 			}, 1000);
 			return;
 		}
@@ -83,33 +85,39 @@ const matchCards = (i1, i2) => {
 	}, 900);
 }
 
-const shuffleCards = () => {
+const shuffleCards = (e) => {
+	const themeId = e.target.getAttribute("id");
+	console.log(themeId);
 	disableDeck = false;
 	matchedPairs = 0;
 	cardOne = cardTwo = "";
 	let arr = [0,1,2,3,4,5,6,7,0,1,2,3,4,5,6,7];
 	arr.sort(() => Math.random() > 0.5 ? 1 : -1);
-	const randomIconGenre = Math.floor(Math.random() * iconsArr.length);
-	console.log(randomIconGenre);
-	const icons = iconsArr[randomIconGenre].icons;
+	const curTheme = iconsArr.find(theme => theme.name === themeId);
+	console.log('theme:', curTheme);
+	const icons = curTheme.icons;
 	cards.forEach((card, index) => {
 		card.classList.remove("flip");
 		let iTag = card.querySelector(".back-view").querySelector("i");
 		iTag.className = `fa-solid fa-${icons[arr[index]]}`
 		card.addEventListener("click", flipCard);
 	});
+	startGame();
 }
 
 const chooseTheme = () => {
 	titleWrapper.style.display = "none";
+	gameWrapper.style.display = "none";
 	themeWrapper.removeAttribute("style");
-
+	themes.forEach(theme => {
+		theme.addEventListener("click", shuffleCards);
+	});
 }
 
 const startGame = () => {
+	titleWrapper.style.display = "none"
 	themeWrapper.style.display = "none";
 	gameWrapper.removeAttribute("style");
-	shuffleCards();
 
 	cards.forEach(card => {
 		card.addEventListener("click", flipCard);
