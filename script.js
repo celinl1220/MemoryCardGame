@@ -27,7 +27,7 @@ const iconsArr = [
 		icons: ["lemon", "pizza-slice", "ice-cream", "hotdog", "egg", "drumstick-bite", "burger", "bacon"]
 	},
 	{
-		name: "emojis",
+		name: "faces",
 		icons: ["face-smile", "face-tired", "face-surprise", "face-sad-cry", "face-angry", "face-grin-tongue-wink", "face-grin-hearts", "face-grin-tears"]
 	},
 	{
@@ -100,8 +100,14 @@ const shuffleCards = () => {
 	});
 }
 
-const startGame = () => {
+const chooseTheme = () => {
 	titleWrapper.style.display = "none";
+	themeWrapper.removeAttribute("style");
+
+}
+
+const startGame = () => {
+	themeWrapper.style.display = "none";
 	gameWrapper.removeAttribute("style");
 	shuffleCards();
 
@@ -112,4 +118,4 @@ const startGame = () => {
 
 gameWrapper.style.display = "none";
 themeWrapper.style.display = "none";
-startBtn.onclick = startGame;
+startBtn.onclick = chooseTheme;
