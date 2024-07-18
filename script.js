@@ -49,8 +49,6 @@ const flipCard = (e) => {
 		cardTwo = clickedCard;
 		disableDeck = true;
 
-		// console.log(cardOne, cardTwo);
-
 		let cardOneIcon = cardOne.querySelector(".back-view").querySelector("i").className;
 		let cardTwoIcon = cardTwo.querySelector(".back-view").querySelector("i").className;
 		matchCards(cardOneIcon, cardTwoIcon);
@@ -87,14 +85,12 @@ const matchCards = (i1, i2) => {
 
 const shuffleCards = (e) => {
 	const themeId = e.target.getAttribute("id");
-	console.log(themeId);
 	disableDeck = false;
 	matchedPairs = 0;
 	cardOne = cardTwo = "";
 	let arr = [0,1,2,3,4,5,6,7,0,1,2,3,4,5,6,7];
 	arr.sort(() => Math.random() > 0.5 ? 1 : -1);
 	const curTheme = iconsArr.find(theme => theme.name === themeId);
-	console.log('theme:', curTheme);
 	const icons = curTheme.icons;
 	cards.forEach((card, index) => {
 		card.classList.remove("flip");
