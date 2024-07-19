@@ -125,6 +125,24 @@ h2 {
 	font-weight: bold;
 }
 
+#restart-btn {
+	background: var(--border-color);
+	border-color: var(--regularText-color);
+	color: var(--regularText-color);
+	padding: 0;
+	width: 60px;
+	height: 20px;
+	font-size: 0.9rem;
+	display: flex;
+	justify-content: center;
+	text-align: center;
+}
+
+#restart-btn:hover {
+	background-color: var(--regularText-color);
+	color: var(--border-color);
+}
+
 .cards, .card, .view {
 	display: flex;
 	justify-content: center;

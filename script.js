@@ -9,6 +9,7 @@ const cards = document.querySelectorAll(".card");
 
 const time = document.getElementById("time");
 const flips = document.getElementById("flips");
+const restartBtn = document.getElementById("restart-btn");
 
 
 let matchedPairs = 0;
@@ -139,6 +140,7 @@ const chooseTheme = () => {
 	titleWrapper.style.display = "none";
 	gameWrapper.style.display = "none";
 	themeWrapper.removeAttribute("style");
+	stopTimer();
 	themes.forEach(theme => {
 		theme.addEventListener("click", shuffleCards);
 	});
@@ -153,6 +155,8 @@ const startGame = () => {
 		card.addEventListener("click", flipCard);
 	});
 }
+
+restartBtn.addEventListener("click", chooseTheme);
 
 gameWrapper.style.display = "none";
 themeWrapper.style.display = "none";
