@@ -6,16 +6,16 @@
 		<!-- refresh automatically for testing purposes: -->
 		<!-- <meta http-equiv="refresh" content="1" /> -->
 		<link rel="stylesheet" href="./styles.css" />
-		<title>Memory Card Game</title>
+		<title>memory card game</title>
 		<script src="https://kit.fontawesome.com/d00ee7135d.js" crossorigin="anonymous"></script>
 	</head>
 	<body>
 		<div id="title-wrapper" class="wrapper">
-			<h1>Memory Card Game</h1>
-			<button id="start-btn">Start Game</button>
+			<h1>memory card game</h1>
+			<button id="start-btn">start game</button>
 		</div>
 		<div id="theme-wrapper" class="wrapper">
-			<h2>Pick a theme:</h2>
+			<h2>pick a theme:</h2>
 			<div class="themes">
 				<button class="theme" id="basic">basic</button>
 				<button class="theme" id="weather">weather</button>
@@ -26,6 +26,10 @@
 			</div>
 		</div>
 		<div id="game-wrapper" class="wrapper">
+			<span id="stats-bar">
+				<span id="time-text">time: <span id="time">0</span>s</span>
+				<span id="flips-text">flips: <span id="flips">10</span></span>
+			</span>
 			<ul class="cards">
 				<li class="card">
 					<div class="view front-view">
