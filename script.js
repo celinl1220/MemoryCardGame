@@ -7,9 +7,20 @@ const themes = document.querySelectorAll(".theme");
 const gameWrapper = document.getElementById("game-wrapper");
 const cards = document.querySelectorAll(".card");
 
+const time = document.getElementById("time");
+const flips = document.getElementById("flips");
+const restartBtn = document.getElementById("restart-btn");
+
+
 let matchedPairs = 0;
 let cardOne, cardTwo;
 let disableDeck = false;
+
+let timeNumber = 0;
+let intervalID;
+let firstCardFlipped = false;
+
+let flipsNumber = 0;
 
 const iconsArr = [
 	{
@@ -38,9 +49,27 @@ const iconsArr = [
 	}
 ];
 
+const startTimer = (timeNumber) => {
+	intervalID = setInterval(timer, 1000);
+	function timer () {
+		timeNumber++;
+		time.textContent = timeNumber;
+	}
+}
+
+const stopTimer = () => {
+	clearInterval(intervalID);
+}
+
 const flipCard = (e) => {
+	if(!firstCardFlipped) {
+		firstCardFlipped = true;
+		startTimer(timeNumber);
+	}
 	let clickedCard = e.target;
 	if(clickedCard !== cardOne && !disableDeck) {
+		flipsNumber++;
+		flips.textContent = flipsNumber;
 		clickedCard.classList.add("flip");
 		if(!cardOne){
 			cardOne = clickedCard;
@@ -59,6 +88,7 @@ const matchCards = (i1, i2) => {
 	if(i1 === i2) {
 		matchedPairs++;
 		if(matchedPairs == 8) {
+			stopTimer();
 			setTimeout(() => {
 				chooseTheme();
 			}, 1000);
@@ -85,6 +115,11 @@ const matchCards = (i1, i2) => {
 
 const shuffleCards = (e) => {
 	const themeId = e.target.getAttribute("id");
+	flipsNumber = 0;
+	flips.textContent = flipsNumber;
+	timerNumber = 0;
+	time.textContent = timerNumber;
+	firstCardFlipped = false;
 	disableDeck = false;
 	matchedPairs = 0;
 	cardOne = cardTwo = "";
@@ -105,6 +140,7 @@ const chooseTheme = () => {
 	titleWrapper.style.display = "none";
 	gameWrapper.style.display = "none";
 	themeWrapper.removeAttribute("style");
+	stopTimer();
 	themes.forEach(theme => {
 		theme.addEventListener("click", shuffleCards);
 	});
@@ -119,6 +155,8 @@ const startGame = () => {
 		card.addEventListener("click", flipCard);
 	});
 }
+
+restartBtn.addEventListener("click", chooseTheme);
 
 gameWrapper.style.display = "none";
 themeWrapper.style.display = "none";
